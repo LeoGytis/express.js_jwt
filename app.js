@@ -10,10 +10,7 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 // database connection
-const username = encodeURIComponent(process.env.DB_USERNAME);
-const password = encodeURIComponent(process.env.DB_PASSWORD);
-const dbURI = `mongodb+srv://${username}:${password}@nodeblog.wo7j5.mongodb.net/blogs?retryWrites=true&w=majority&appName=nodeblog`;
-
+const dbURI = process.env.MONGO_URI;
 mongoose
   .connect(dbURI)
   .then((result) => app.listen(3000))
